@@ -8,6 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class TrainingTracker {
@@ -16,9 +20,16 @@ public class TrainingTracker {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private long id;     			
 		private long scheduleId;
-		private String projectName;		 			
+		private String projectName;		
+		
+		@Temporal(TemporalType.DATE)
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 		private Date scheduleDate;      
-		private Date updatedDate;		
+		@Temporal(TemporalType.DATE)
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+		private Date updatedDate;	
+		@Temporal(TemporalType.DATE)
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 		private Date completedDate;		
 		private String status;			
 		
